@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iPhone Resales Corner</title>
+</head>
+
+<body>
+
+  <div class="main-content" id="apple_default">
+
+    <header class="header">
+      <h1 id="platform">iPhone Resales Corner</h1><br>
+    </header>
+
+    <h2 id="get_predicted_price" style="color:  rgb(153, 255, 0);"></h2>
+
+    <div class="all_prices">
+      <div id="average_price"></div>
+      <div id="good_price"></div>
+      <div id="excellent_price"></div>
+    </div>
+
+    <form action="{{ url_for('buy_iphone')}}" method="post">
+      <select name="model_mob_name" style="display: none;">
+        <option id="to_database_1"></option>
+      </select>
+      <select name="model_mob_variant" style="display: none;">
+        <option id="to_database_1_var"></option>
+      </select>
+      <button id="goto_olx_1" type="submit"></button><br><br>
+    </form>
+
+    <h2 id="user_reviews_heading">User Reviews</h2>
+
+
+    <div class="content_1">
+
+      <div class="content">
+
+        <div class="container">
+          <canvas id="myChart"></canvas>
+        </div>
+
+        <div class="container_2">
+          <canvas id="mychart_2"></canvas>
+        </div>
+
+      </div>
+
+      <div class="rating">
+        <span style="color: white;">User Rating :</span>
+        <span id="star1" class="fa fa-star"></span>
+        <span id="star2" class="fa fa-star"></span>
+        <span id="star3" class="fa fa-star"></span>
+        <span id="star4" class="fa fa-star"></span>
+        <span id="star5" class="fa fa-star"></span>
+      </div>
+
+
+      <div style="color: white;" id="get_total"></div>
+
+
+      <div class="review_list">
+        <div style="color: rgb(17, 223, 17);" id="get_pos"></div>
+        <div style="color: yellow;" id="get_neut"></div>
+        <div style="color: red;" id="get_neg"></div>
+      </div>
+
+      <div class="rate_list">
+        <div style="color: rgb(0, 255, 0);" id="rate_5"></div>
+        <div style="color: rgb(0, 238, 255);" id="rate_4"></div>
+        <div style="color: rgb(238, 255, 0);" id="rate_3"></div>
+        <div style="color: rgb(255, 166, 0);" id="rate_2"></div>
+        <div style="color: rgb(255, 0, 0);" id="rate_1"></div>
+      </div>
+
+    </div>
+
+    <form action="{{ url_for('tech_review')}}" method="post" id="tech_form">
+      <select name="model_mob_name" style="display: none;">
+        <option id="push_name"></option>
+      </select>
+      <select name="model_mob_variant" style="display: none;">
+        <option id="push_name_variant"></option>
+      </select>
+    </form>
+
+    <form action="{{ url_for('buy_iphone')}}" method="post">
+      <select name="model_mob_name" style="display: none;">
+        <option id="to_database_2"></option>
+      </select>
+      <select name="model_mob_variant" style="display: none;">
+        <option id="to_database_2_var"></option>
+      </select>
+      <button id="goto_olx_2" type="submit"></button><br>
+    </form>
+    <br><button id="subtheform" onclick="sub_form()">See Tech Reviews</button>
+
+  </div>
+
+
+  <footer class="foot">
+    <h3>© iPhone Resales Corner 2021 All Rights Reserved</h3>
+    <h3 id="foot_gmail">Contact - iphoneresalescorner@gmail.com</h3>
+  </footer>
+
+
+</body>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+
+  body {
+    height: 100%;
+    font-family: 'Times New Roman', Times, serif;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    background-color: black;
+    text-align: center;
+  }
+
+  .main-content {
+    background: url("https://sfwallpaper.com/images/blank-wallpaper-13.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin-bottom: 0;
+  }
+
+  .foot {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    background-color: black;
+    color: rgb(152, 235, 29);
+  }
+
+  header {
+    color: rgb(152, 235, 29);
+    background-color: rgba(0, 0, 0, 0.5);
+    font-family: 'Cinzel', serif;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    position: sticky;
+    top: 0;
+  }
+
+
+  header h1 {
+    margin: 1%;
+  }
+
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+  }
+
+  .content_2 {
+    color: white;
+  }
+
+  .container {
+    height: 35%;
+    width: 35%;
+    margin: 5%;
+  }
+
+
+  .container_2 {
+    height: 50%;
+    width: 50%;
+    margin: 5%;
+  }
+
+  .review_list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    color: white;
+    font-size: large;
+  }
+
+  .review_list div {
+    margin: 2%;
+  }
+
+  #get_total {
+    font-size: x-large;
+  }
+
+  .rate_list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    color: white;
+    font-size: large;
+  }
+
+  .rate_list div {
+    margin: 1%;
+  }
+
+  .all_prices {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    color: white;
+    font-size: large;
+  }
+
+  .all_prices div {
+    margin: 1%;
+  }
+
+  #subtheform {
+    margin-bottom: 5%;
+    height: 50px;
+    width: 100px;
+    border-radius: 20px;
+    border: solid 3px black;
+  }
+
+  #subtheform:hover {
+    background-color: green;
+    border: solid 4px black;
+  }
+
+  #user_reviews_heading {
+    font-size: x-large;
+    font-weight: bolder;
+    color: white;
+  }
+
+  .checked {
+    color: rgb(255, 251, 0);
+  }
+
+  .rating {
+    font-size: x-large;
+    margin: 2%;
+  }
+
+  #goto_olx_1 {
+    color: rgb(0, 89, 255);
+  }
+
+  #goto_olx_2 {
+    color: rgb(0, 89, 255);
+  }
+
+
+
+
+
+  /*   FOR MOBILE USERS    */
+
+  @media only screen and (max-width:650px) {
+    .all_prices {
+      flex-direction: column;
+    }
+
+    .rate_list {
+      flex-direction: column;
+    }
+
+    .content {
+      flex-direction: column;
+    }
+
+    .review_list {
+      flex-direction: column;
+    }
+
+    .container {
+      height: 90%;
+      width: 90%;
+      margin: 5%;
+    }
+
+    .container_2 {
+      height: 90%;
+      width: 90%;
+      margin: 5%;
+    }
+
+    #foot_gmail {
+      font-size: medium;
+    }
+
+    .rating {
+      font-size: large;
+      margin: 2%;
+    }
+  }
+</style>
+
+<script type="text/javascript">
+
+  let mychart = document.getElementById('myChart').getContext('2d');
+  let mychart_2 = document.getElementById('mychart_2').getContext('2d');
+
+  let total = '{{ classification_text }}';
+  let pos = '{{ prediction_text }}';
+  let neut = '{{ prediction_text_1 }}';
+  let neg = '{{ prediction_text_2 }}';
+
+  let one = '{{ classification_text_5 }}';
+  let two = '{{ classification_text_4 }}';
+  let three = '{{ classification_text_3 }}';
+  let four = '{{ classification_text_2 }}';
+  let five = '{{ classification_text_1 }}';
+
+  let price = '{{ prediction_price_mob }}';
+  let mob_model = '{{ mobile_model_name }}';
+  let mob_variant = '{{ mob_variant }}';
+
+  let tech_string;
+
+
+  price = Math.floor(price);
+
+  pos = Math.floor(pos);
+  neut = Math.floor(neut);
+  neg = Math.floor(neg);
+
+  one = Math.floor(one);
+  two = Math.floor(two);
+  three = Math.floor(three);
+  four = Math.floor(four);
+  five = Math.floor(five);
+
+  Chart.defaults.global.defaultFontColor = 'white';
+
+
+  let reviewchart = new Chart(mychart, {
+    type: 'pie',
+    data: {
+      labels: ['Positive', 'Neutral', 'Negative'],
+      datasets: [{
+        label: 'Review',
+        data: [
+          pos,
+          neut,
+          neg
+        ],
+        backgroundColor: [
+          'green',
+          'yellow',
+          'red',
+        ]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Review of iPhone ' + mob_model,
+        fontSize: 20
+      },
+      legend: {
+        display: true,
+        labels: {
+          fontSize: 15
+        }
+      }
+    }
+  });
+
+
+  let ratingchart = new Chart(mychart_2, {
+    type: 'horizontalBar',
+    data: {
+      labels: ['5★ Rating', '4★ Rating', '3★ Rating', '2★ Rating', '1★ Rating'],
+      datasets: [{
+        label: 'Number of Ratings',
+        data: [
+          five,
+          four,
+          three,
+          two,
+          one,
+          0,
+          20
+        ],
+        backgroundColor: [
+          'rgb(17, 223, 17)',
+          'rgb(0, 238, 255)',
+          'yellow',
+          'orange',
+          'red',
+        ]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Rating of iPhone ' + mob_model,
+        fontSize: 20
+      },
+      legend: {
+        display: false
+      }
+    }
+  });
+
+  let average = 0;
+  let excellent = 0;
+
+  if (price > 0 && price <= 10000) {
+    average = (price * 85) / 100;
+    excellent = (price * 110) / 100;
+  }
+  else if (price > 10000 && price <= 20000) {
+    average = (price * 92) / 100;
+    excellent = (price * 115) / 100;
+  }
+  else if (price > 20000 && price <= 30000) {
+    average = (price * 90) / 100;
+    excellent = (price * 118) / 100;
+  }
+  else if (price > 30000 && price <= 50000) {
+    average = (price * 95) / 100;
+    excellent = (price * 112) / 100;
+  }
+  else if (price > 50000 && price <= 80000) {
+    average = (price * 96) / 100;
+    excellent = (price * 108) / 100;
+  }
+  else if (price > 80000) {
+    average = (price * 98) / 100;
+    excellent = (price * 102) / 100;
+  }
+  if (mob_model.trim() == "12PRO" || mob_model.trim() == "12PROMAX") {
+    if (mob_variant.trim() == "64") {
+      mob_variant = "128";
+    }
+    else if (mob_variant.trim() == "128") {
+      mob_variant = "256";
+    }
+    else if (mob_variant.trim() == "256") {
+      mob_variant = "512";
+    }
+  }
+
+
+  document.getElementById("get_total").innerHTML = "Total number of reviews: " + total;
+  document.getElementById("get_pos").innerHTML = "Number of Positive reviews: " + pos;
+  document.getElementById("get_neut").innerHTML = "Number of Neutral reviews: " + neut;
+  document.getElementById("get_neg").innerHTML = "Number of Negative reviews: " + neg;
+
+  document.getElementById("rate_5").innerHTML = "5 Star Ratings: " + five;
+  document.getElementById("rate_4").innerHTML = "4 Star Ratings: " + four;
+  document.getElementById("rate_3").innerHTML = "3 Star Ratings: " + three;
+  document.getElementById("rate_2").innerHTML = "2 Star Ratings: " + two;
+  document.getElementById("rate_1").innerHTML = "1 Star Ratings: " + one;
+
+  document.getElementById("get_predicted_price").innerHTML = "Price of iphone " + mob_model + " " + mob_variant + "GB";
+  document.getElementById("average_price").innerHTML = "Average Condition: ₹ " + average;
+  document.getElementById("good_price").innerHTML = "Good Condition: ₹ " + price;
+  document.getElementById("excellent_price").innerHTML = "Excellent Condition: ₹ " + excellent;
+  document.getElementById("goto_olx_1").innerHTML = "Buy this iPhone " + mob_model;
+  document.getElementById("goto_olx_2").innerHTML = "Buy this iPhone " + mob_model;
+
+
+  function sub_form() {
+    if (mob_model == '4' || mob_model == '4S' || mob_model == '5' || mob_model == '5S' || mob_model == '11PRO') {
+      alert("Tech Reviews not available for " + mob_model);
+      return;
+    }
+    document.getElementById("tech_form").submit();
+  }
+
+  var star = Math.round((pos / total) * 5);
+
+  for (var i = 0; i < star; i++) {
+    document.getElementById("star" + (i + 1)).className = "fa fa-star checked";
+  }
+
+
+
+  let url = window.location.href;
+
+  if (url.includes("/review")) {
+    document.getElementById("push_name").value = mob_model;
+    document.getElementById("push_name_variant").value = mob_variant;
+    document.getElementById("to_database_1").value = mob_model;
+    document.getElementById("to_database_1_var").value = mob_variant;
+    document.getElementById("to_database_2").value = mob_model;
+    document.getElementById("to_database_2_var").value = mob_variant;
+  }
+
+
+</script>
+
+
+
+
+</html>

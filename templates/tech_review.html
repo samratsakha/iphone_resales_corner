@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iPhone Resales Corner</title>
+</head>
+
+<body>
+
+  <div class="main-content" id="apple_default">
+
+    <header class="header">
+      <h1 id="platform">iPhone Resales Corner</h1><br>
+    </header><br><br>
+
+    <h2 id="push_name" style="color: white;"></h2>
+
+    <div class="rating_content">
+
+      <div class="rating_design">
+        <span class="rate_name" style="color: rgb(4, 248, 4);margin-left: 0.6%;">Design&ensp;&emsp;&emsp;</span>
+        <span id="star1" class="fa fa-star"></span>
+        <span id="star2" class="fa fa-star"></span>
+        <span id="star3" class="fa fa-star"></span>
+        <span id="star4" class="fa fa-star"></span>
+        <span id="star5" class="fa fa-star"></span>
+      </div>
+
+      <div class="rating_display">
+        <span class="rate_name" style="color:rgb(0, 238, 255);">Display&ensp;&emsp;&emsp;</span>
+        <span id="star11" class="fa fa-star"></span>
+        <span id="star12" class="fa fa-star"></span>
+        <span id="star13" class="fa fa-star"></span>
+        <span id="star14" class="fa fa-star"></span>
+        <span id="star15" class="fa fa-star"></span>
+      </div>
+
+      <div class="rating_software">
+        <span class="rate_name" style="color: yellow;margin-left: 0.1%;">Software&emsp;&ensp;&nbsp;</span>
+        <span id="star21" class="fa fa-star"></span>
+        <span id="star22" class="fa fa-star"></span>
+        <span id="star23" class="fa fa-star"></span>
+        <span id="star24" class="fa fa-star"></span>
+        <span id="star25" class="fa fa-star"></span>
+      </div>
+
+      <div class="rating_perform">
+        <span class="rate_name" style="color: orange; margin-left: 0%;">Performance</span>
+        <span id="star31" class="fa fa-star"></span>
+        <span id="star32" class="fa fa-star"></span>
+        <span id="star33" class="fa fa-star"></span>
+        <span id="star34" class="fa fa-star"></span>
+        <span id="star35" class="fa fa-star"></span>
+      </div>
+
+      <div class="rating_battery">
+        <span class="rate_name" style="color: pink;">Battery&emsp;&emsp;</span>
+        <span id="star41" class="fa fa-star"></span>
+        <span id="star42" class="fa fa-star"></span>
+        <span id="star43" class="fa fa-star"></span>
+        <span id="star44" class="fa fa-star"></span>
+        <span id="star45" class="fa fa-star"></span>
+      </div>
+
+      <div class="rating_camera">
+        <span class="rate_name" style="color: rgb(0, 153, 255);">Camera&emsp;&emsp;</span>
+        <span id="star51" class="fa fa-star"></span>
+        <span id="star52" class="fa fa-star"></span>
+        <span id="star53" class="fa fa-star"></span>
+        <span id="star54" class="fa fa-star"></span>
+        <span id="star55" class="fa fa-star"></span>
+      </div>
+
+      <div class="rating_overall">
+        <span class="rate_name" style="color: white;">Overall&emsp;&emsp;</span>
+        <span id="star61" class="fa fa-star"></span>
+        <span id="star62" class="fa fa-star"></span>
+        <span id="star63" class="fa fa-star"></span>
+        <span id="star64" class="fa fa-star"></span>
+        <span id="star65" class="fa fa-star"></span>
+      </div>
+  
+    </div>
+
+    <div class="text_tech_review">
+      <div class="content_1">
+      <div id="des" style="color: rgb(17, 223, 17);"></div>
+      <div id="disp" style="color:rgb(0, 238, 255);"></div>
+      <div id="soft" style="color: yellow;"></div>
+      </div>
+      <div class="content_2">
+      <div id="perform" style="color: orange;"></div>
+      <div id="bat" style="color: pink;"></div>
+      <div id="cam" style="color: rgb(0, 153, 255);"></div>
+      </div>
+      <div id="over" style="color: white;"></div>
+    </div>
+
+    <form action="{{ url_for('buy_iphone')}}" method="post" >
+      <select name="model_mob_name" style="display: none;">
+        <option id="to_database_3"></option>
+      </select>
+      <select name="model_mob_variant" style="display: none;">
+        <option id="to_database_3_var"></option>
+      </select>
+      <button id="goto_olx" type="submit"></button><br><br>
+    </form>
+
+    
+  </div>
+
+
+  <footer class="foot">
+    <h3>© iPhone Resales Corner 2021 All Rights Reserved</h3>
+    <h3 id="gmail">Contact - iphoneresalescorner@gmail.com</h3>
+  </footer>
+
+
+</body>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    overflow-y: scroll; 
+  }
+
+
+  body {
+    height: 100%;
+    font-family: 'Times New Roman', Times, serif;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    background-color: black;
+    text-align: center;
+  }
+
+  .main-content {
+    background: url("https://sfwallpaper.com/images/blank-wallpaper-13.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin-bottom: 0;
+  }
+
+  .foot {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    background-color: black;
+    color: rgb(152, 235, 29);
+  }
+
+  header {
+    color: rgb(152, 235, 29);
+    background-color: rgba(0, 0, 0, 0.5);
+    font-family: 'Cinzel', serif;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    position: sticky;
+    top: 0;
+  }
+
+
+  header h1 {
+    margin: 1%;
+  }
+
+  .text_tech_review{
+    margin-top: 1%;
+    color: white;
+    font-size: large;
+  }
+
+  .content_1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    position: sticky;
+  }
+
+  .content_1 div{
+    margin: 2%;
+  }
+
+  .content_2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    position: sticky;
+  }
+
+  .content_2 div{
+    margin: 2%;
+  }
+
+  #goto_olx{
+    margin: 3%;
+  }
+
+  .checked {
+    color: rgb(243, 239, 11);
+  }
+
+  .rating_content{
+    font-size: xx-large;
+  }
+
+  .rating_content span{
+    margin: 0.3%;
+    margin-bottom: 1%;
+  }
+
+  .checked:hover{
+    color: rgb(238, 255, 0);
+    cursor: pointer;
+  }
+
+  .rate_name{
+    color: white;
+    font-size: medium;
+    margin-right: 1%;
+  }
+
+  #goto_olx{
+    color: rgb(0, 4, 255);
+  }
+
+
+  /*   FOR MOBILE USERS    */
+
+  @media only screen and (max-width:550px) {
+    .content_1{
+      flex-direction: column;
+    }
+    .content_2{
+      flex-direction: column;
+    }
+    .container{
+      height: 100%;
+      width: 90%;
+    }
+    #gmail{
+      font-size: medium;
+    }
+    .rating_content{
+      font-size: x-large;
+    }
+    
+
+  }
+</style>
+
+<script type="text/javascript">
+
+  let tech_review = '{{ tech_reviews }}';
+  let mob_model = '{{ model_of_the_mob }}';
+  let mob_variant = '{{ variant_of_the_mob }}';
+
+  var arr = new Array();
+
+  for(var i=0;i<tech_review.length;i++){
+    switch(tech_review[i]){
+      case '5':
+        arr.push(0);
+        break;
+      case '6':
+        arr.push(1);
+        break;
+      case '7':
+        arr.push(2);
+        break;
+      case '8':
+        arr.push(3);
+        break;
+      case '9':
+        arr.push(4);
+        break;
+      case '1':
+        arr.push(5);
+        break;
+      default:
+        break;
+    }
+  }
+
+  document.getElementById("push_name").innerHTML = "Tech - Rating of iPhone "+mob_model;
+
+  for(var i=0;i<(arr[1]);i++){
+    document.getElementById("star"+(i+1)).className = "fa fa-star checked";
+  }
+
+  for(var i=0;i<(arr[2]);i++){
+    document.getElementById("star1"+(i+1)).className = "fa fa-star checked";
+  }
+
+  for(var i=0;i<(arr[3]);i++){
+    document.getElementById("star2"+(i+1)).className = "fa fa-star checked";
+  }
+
+  for(var i=0;i<(arr[4]);i++){
+    document.getElementById("star3"+(i+1)).className = "fa fa-star checked";
+  }
+
+  for(var i=0;i<(arr[5]);i++){
+    document.getElementById("star4"+(i+1)).className = "fa fa-star checked";
+  }
+
+  for(var i=0;i<(arr[6]);i++){
+    document.getElementById("star5"+(i+1)).className = "fa fa-star checked";
+  }
+
+  for(var i=0;i<(arr[0]);i++){
+    document.getElementById("star6"+(i+1)).className = "fa fa-star checked";
+  }
+
+
+  document.getElementById("des").innerHTML = "Design Rating : "+arr[1]+"/5";
+  document.getElementById("disp").innerHTML = "Display Rating : "+arr[2]+"/5";
+  document.getElementById("soft").innerHTML = "Software Rating : "+arr[3]+"/5";
+  document.getElementById("perform").innerHTML = "Performance Rating : "+arr[4]+"/5";
+  document.getElementById("bat").innerHTML = "Battery Rating : "+arr[5]+"/5";
+  document.getElementById("cam").innerHTML = "Camera Rating : "+arr[6]+"/5";
+  document.getElementById("over").innerHTML = "Overall Rating : "+arr[0]+"/5";
+
+  document.getElementById("goto_olx").innerHTML = "Buy this iPhone "+mob_model;
+
+  let url = window.location.href;
+
+  if(url.includes("/tech_review")){
+    document.getElementById("to_database_3").value = mob_model;
+    document.getElementById("to_database_3_var").value = mob_variant;
+  }
+
+</script>
+
+
+
+
+</html>
